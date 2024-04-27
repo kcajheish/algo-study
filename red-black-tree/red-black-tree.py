@@ -1,7 +1,25 @@
 """
 left leaning red black tree
+
+We like to imitate 2-3 tree with a simple binary search tree.
+1. A left leaning red link works as a glue for three node
+2. No nodes has two red links connected to it.
+    - 4-node is not valid in a 2-3 tree.
+3. Every path from root to the null node has same number of black link.
+    - 2-3 tree has perfect balance.
+
+
+
 """
 
+"""
+Use color to label a red/black link.
+If a node has a red link connected from the parent, node color is Red
+e.g. c.right.color = RED
+    c
+  /(red)
+ d
+"""
 RED = True
 BLACK = False
 
@@ -18,6 +36,9 @@ class RedBlackTree:
         root = None
 
     def get(self, key):
+        """
+        - same as BST but is usually faster due to perfectly balance.
+        """
         node = self.root
         while node:
             if key > node.right.key:
@@ -57,6 +78,11 @@ class RedBlackTree:
 
     def rotate_left(self, h):
         """
+        - To make a right leaning red link to a left leaning one
+        - The symmetric order and black balance is maintained
+        - We didnt' change the height of black link
+        - Node is still 2-3 node
+
         h                      x
         .  red x  ->       red h   .
         """
@@ -70,6 +96,9 @@ class RedBlackTree:
 
     def rotate_right(self, h):
         """
+        - To make a left leaning red link to a right leaning one
+        - The symmetric order and black balance is maintained
+
            h                 x
         redx  .  ->          .   red h
         """
@@ -77,11 +106,14 @@ class RedBlackTree:
         x = h.left
         h.left = x.right
         x.right = h
+        x.color = h.color
         h.color = RED
-        x.color = BLACK
         return x
 
     def flip_colors(self, h):
+        """
+        - When both children has red link, flip the color and makes current node link red,
+        """
         assert self.is_red(h) == False
         assert self.is_red(h.left) == True
         assert self.is_red(h.right) == True
