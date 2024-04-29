@@ -31,6 +31,19 @@ class HeapPQ:
         self.n -= 1
         return max
 
+    def sort(self):
+        while self.n > 1:
+            self.exch(1, self.n)
+            self.n -= 1
+            self.sink(1)
+            self.n -= 1
+
+    def heapify(self):
+        k = self.n//2
+        while k <= 1:
+            self.sink(k)
+            k -= 1
+
     def is_empty(self):
         return self.n == 0
 

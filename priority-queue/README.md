@@ -30,3 +30,16 @@ API of binary heap pq
 - sink(k)
 - swim(k)
 - insert(key)
+
+Other operation:
+- We can also create heap from an array with random order by a bottom up approach. Start with rightmost node with leaf and sink down the node one by one.
+- To sort the array, we use the approach similar to delete max except we don't null out the last element.
+
+Compare
+- Pro
+    - heap sort is a in place sorting with logN time
+        - merge sort is not in place
+        - quick sort is quadratic time(n^2) in worst case
+- Con
+    - not stable
+        - Memory references to parent and children are not close to each other. It may take many sweeps(or rotations) for a disk head to reach all three in physical memory. The situation may become worse if cache is disbtributed. So most people choose merge sort for their stability.
