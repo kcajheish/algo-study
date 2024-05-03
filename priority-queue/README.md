@@ -42,4 +42,4 @@ Compare
         - quick sort is quadratic time(n^2) in worst case
 - Con
     - not stable
-        - Memory references to parent and children are not close to each other. It may take many sweeps(or rotations) for a disk head to reach all three in physical memory. The situation may become worse if cache is disbtributed. So most people choose merge sort for their stability.
+        - Memory references to parent and children are not close to each other. It may take many reads to reach all three in physical memory. The situation may become worse if memory is disbtributed. So most people choose merge sort for their stability.
