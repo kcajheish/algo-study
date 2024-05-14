@@ -25,6 +25,10 @@ class Kruskal:
 
 class LazyPrim:
     def mst(self, graph):
+        """
+        time ElogE
+        space E
+        """
         pq = []
         mst = []
         marked = [False]*graph.V()
@@ -48,4 +52,4 @@ class LazyPrim:
         marked[u] = True
         for edge in graph.adj(u):
             if not marked[edge.other(u)]:
-                heappush(edge, key=lambda edge: edge.w)
+                heappush(heap, key=lambda edge: edge.w)
