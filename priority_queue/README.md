@@ -20,9 +20,7 @@ Binary heap can be implemented using array.
 3. If parent indice is k, left and right children are 2*k and 2k+1.
     - implication: move tree around by having arithmetic operation on the indice
 
-Two possible violations to invariant. To fix these, either sink or swim the node.
-1. Parent key becomes smaller than child's key.
-2. Key becomes larger than parent's key.
+Either sink or swim the node when current node is smaller than childern or larger than parent.
 
 API of binary heap pq
 - delete_max()

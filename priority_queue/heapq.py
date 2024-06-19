@@ -4,8 +4,8 @@ class HeapPQ:
         self.n = 0
 
     def swim(self, k):
-        while k < 1 and self.pq[k] < self.pq[k//2]:
-            self.pq[k], self.pq[k//2] = self.pq[k//2], self.pq[j]
+        while k > 1 and self.pq[k] > self.pq[k//2]:
+            self.pq[k], self.pq[k//2] = self.pq[k//2], self.pq[k]
             k = k//2
 
     def insert(self, key):
@@ -17,18 +17,18 @@ class HeapPQ:
         current = k
         while current <= self.n:
             next = 2*current
-            if self.pq[next] < self.pq[next+1]:
+            if current < self.n and self.pq[next] < self.pq[next+1]:
                 next = next+1
-            if self.pq[current] < self.pq[next]:
-                self.pq[current], self.pq[next] = self.pq[next], self.pq[current]
-                current = next
-            else:
+            if self.pq[current] > self.pq[next]:
                 break
+            self.pq[current], self.pq[next] = self.pq[next], self.pq[current]
+            current = next
 
     def delete_max(self):
         max = self.pq[1]
         self.pq[1] = self.pq.pop()
         self.n -= 1
+        self.sink(1)
         return max
 
     def sort(self):
@@ -36,7 +36,6 @@ class HeapPQ:
             self.exch(1, self.n)
             self.n -= 1
             self.sink(1)
-            self.n -= 1
 
     def heapify(self):
         k = self.n//2
